@@ -1,0 +1,1 @@
+In this project, tests have been conducted using the APIs of the Portal website. The goal was to retrieve products and fetch a set of data from the site. Additionally, the desired data was sent as required.
