@@ -1,26 +1,20 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Dashbord from "./Components/Dashbord";
+import Login from "./Components/Login";
+import { AuthProvider } from "./Components/AuthContext";
 
 const App = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    axios
-      .get(
-        "/site/api/v1/store/products?page=1&size=10&relation&filter&available&sales&featured&most&q&sorting"
-      )
-      .then((res) => {
-        setProducts(res.data.products);
-        console.log(res);
-      });
-  }, []);
-  return (
-    <div>
-      <ul>
-        {products.map((t, index) => (
-          <li key={index}>{t.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Dashbord />} />
+          <Route path="/login" element={<Login />}/>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  </div>;
 };
+
 export default App;
+
